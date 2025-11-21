@@ -8,9 +8,9 @@ from src.api.utils.op_id_generator import generate_op_id
 router = APIRouter(prefix="/api", tags=["template"])
 
 @router.get("/health", response_model=ApiResponseWrapper)
-async def health_check():
-    return {
-        "status_code": HTTPStatus.OK,
-        "operation_id": generate_op_id(),
-        "data": "ok"
-    }
+async def health_check() -> ApiResponseWrapper:
+    return ApiResponseWrapper(
+        data="OK",
+        status_code=HTTPStatus.OK,
+        operation_id=generate_op_id()
+    )
