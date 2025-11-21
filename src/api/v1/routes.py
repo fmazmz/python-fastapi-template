@@ -1,9 +1,9 @@
 from http import HTTPStatus
-
 from fastapi import APIRouter
-from uuid import uuid4
 
 from src.api.ApiResponseWrapper import ApiResponseWrapper
+from src.api.utils.op_id_generator import generate_op_id
+
 
 router = APIRouter(prefix="/api", tags=["template"])
 
@@ -11,6 +11,6 @@ router = APIRouter(prefix="/api", tags=["template"])
 def health_check():
     return {
         "status_code": HTTPStatus.OK,
-        "operation_id": uuid4(),
+        "operation_id": generate_op_id(),
         "data": "ok"
     }
